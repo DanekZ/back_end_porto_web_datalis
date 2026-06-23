@@ -15,10 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('role');
-            $table->string('tech_stack');
-            $table->string('github_url')->nullable();
-            $table->string('demo_url')->nullable();
+            $table->string('thumbnail')->nullable(); // URL gambar utama
+            $table->json('images')->nullable();       // Array max 5 URL gambar
+            $table->json('tech_stack');               // ganti 'tags'
+            $table->enum('category', ['web', 'data']);
+            $table->string('github_url')->nullable(); // ganti 'github'
+            $table->string('demo_url')->nullable();   // ganti 'demo'
+            $table->enum('status', ['completed', 'in-progress', 'archived'])->default('completed');
+            $table->boolean('featured')->default(false);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category');
+            $table->enum('category', ['web', 'data', 'other']);
+            $table->integer('proficiency')->default(80); // 0-100
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->string('company');
-            $table->string('position');
+            $table->string('year');
+            $table->string('title');          // nama instansi/perusahaan
+            $table->string('role');           // posisi/jabatan
             $table->text('description');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->enum('type', ['work', 'education', 'training'])->default('work');
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

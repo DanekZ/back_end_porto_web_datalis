@@ -2,22 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'title',
-        'category',
         'description',
-        'role',
+        'thumbnail',
+        'images',
         'tech_stack',
+        'category',
         'github_url',
         'demo_url',
+        'status',
+        'featured',
+        'sort_order',
     ];
 
-    public function images()
-    {
-        return $this->hasMany(ProjectImage::class)->orderBy('order');
-    }
+    protected $casts = [
+        'tech_stack' => 'array',
+        'images'     => 'array',
+        'featured'   => 'boolean',
+    ];
 }
