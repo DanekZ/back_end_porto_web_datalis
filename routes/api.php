@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AchievementController;
 use App\Http\Controllers\Api\EducationController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UploadController;
 
 // ── Public Routes ─────────────────────────────────────────────────────────────
 Route::post('/login', [AuthController::class, 'login']);
@@ -50,6 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
    Route::post('/educations',          [EducationController::class, 'store']);
    Route::put('/educations/{id}',      [EducationController::class, 'update']);
    Route::delete('/educations/{id}',   [EducationController::class, 'destroy']);
+
+   // upload project image
+   Route::post('/upload',   [UploadController::class, 'upload']);
+   Route::delete('/upload', [UploadController::class, 'delete']);
 
    // Settings (resume_url, dll)
    Route::put('/settings',             [SettingController::class, 'update']);

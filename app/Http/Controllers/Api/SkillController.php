@@ -14,9 +14,10 @@ class SkillController extends Controller
         $grouped = $skills->groupBy('category')->map(
             fn($group) =>
             $group->map(fn($s) => [
-                'id'          => $s->id,
-                'name'        => $s->name,
-                'proficiency' => $s->proficiency,
+                'id'       => $s->id,
+                'name'     => $s->name,
+                'icon'     => $s->icon,
+                'color'    => $s->color,
             ])->values()
         );
 
@@ -26,15 +27,17 @@ class SkillController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'        => 'required|string',
-            'category'    => 'required|in:web,data,other',
-            'proficiency' => 'integer|min:0|max:100',
-            'sort_order'  => 'integer',
+            'name'       => 'required|string',
+            'category'   => 'required|in:web,data,other',
+            'icon'       => 'nullable|string',
+            'color'      => 'nullable|string',
+            'sort_order' => 'integer',
         ]);
 
         $skill = Skill::create($data);
         return response()->json(['data' => $skill], 201);
     }
+
 
     public function update(Request $request, $id)
     {
@@ -42,6 +45,7 @@ class SkillController extends Controller
         $skill->update($request->all());
         return response()->json(['data' => $skill]);
     }
+
 
     public function destroy($id)
     {

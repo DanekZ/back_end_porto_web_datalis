@@ -12,11 +12,8 @@ class Skill extends Model
     protected $fillable = [
         'name',
         'category',
-        'proficiency',
+        'icon',
+        'color',
         'sort_order',
-    ];
-
-    protected $casts = [
-        'proficiency' => 'integer',
     ];
 }

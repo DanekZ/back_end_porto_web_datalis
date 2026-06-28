@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'description',
         'thumbnail',
+        'thumbnail_path',
         'images',
+        'image_paths',
         'tech_stack',
         'category',
         'github_url',
@@ -24,8 +23,9 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'tech_stack' => 'array',
-        'images'     => 'array',
-        'featured'   => 'boolean',
+        'tech_stack'  => 'array',
+        'images'      => 'array',
+        'image_paths' => 'array',
+        'featured'    => 'boolean',
     ];
 }
