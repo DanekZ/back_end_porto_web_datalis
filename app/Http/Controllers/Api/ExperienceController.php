@@ -14,14 +14,16 @@ class ExperienceController extends Controller
             ->orderBy('year', 'desc')
             ->get()
             ->map(fn($e) => [
-                'id'          => $e->id,
-                'year'        => $e->year,
-                'title'       => $e->title,
-                'role'        => $e->role,
-                'description' => $e->description,
-                'type'        => $e->type,
-            ]);
-
+            'id'          => $e->id,
+            'year'        => $e->year,
+            'title'       => $e->title,
+            'role'        => $e->role,
+            'description' => $e->description,
+            'type'        => $e->type,
+            'start_date'  => $e->start_date,
+            'end_date'    => $e->end_date,
+        ]);
+        
         return response()->json(['data' => $experiences]);
     }
 
@@ -33,6 +35,8 @@ class ExperienceController extends Controller
             'role'        => 'required|string',
             'description' => 'required|string',
             'type'        => 'in:work,education,training',
+            'start_date'  => 'nullable|string',
+            'end_date'    => 'nullable|string',
             'sort_order'  => 'integer',
         ]);
 

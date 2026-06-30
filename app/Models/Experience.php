@@ -15,6 +15,8 @@ class Experience extends Model
         'role',
         'description',
         'type',
+        'start_date',
+        'end_date',
         'sort_order',
     ];
 }
